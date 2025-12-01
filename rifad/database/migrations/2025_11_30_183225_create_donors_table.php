@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('donated_amount', 12, 2);
 
             $table->foreignId('project_id')->nullable()->constrained('projects');
-            $table->foreignId('organization_id')->nullable()->constrained('organizations');
 
             $table->timestamps();
         });

@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Donor extends Model
 {
     protected $fillable = [
-        'name','email','phone','donated_amount',
-        'project_id','organization_id'
+        'name',
+        'email',
+        'phone',
+        'donated_amount',
+        'project_id',
     ];
 
     protected $casts = [
@@ -20,8 +23,4 @@ class Donor extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function organization()
-    {
-        return $this->belongsTo(Organization::class);
-    }
 }
