@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateVolunteering extends CreateRecord
 {
     protected static string $resource = VolunteeringResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -42,26 +43,26 @@ class JoinUsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                TernaryFilter::make('confirmed')
-                    ->label('Confirmed')
-                    ->trueLabel('Confirmed')
-                    ->falseLabel('Not Confirmed')
-                    ->nullableLabel('All'),
-
-                Filter::make('created_at')
+                Filter::make('search')
                     ->form([
-                        DatePicker::make('from')->label('From'),
-                        DatePicker::make('until')->label('Until'),
+                        TextInput::make('value')
+                            ->label('Search')
+                            ->placeholder('Enter name, email, address...'),
                     ])
                     ->query(function ($query, array $data) {
-                        return $query
-                            ->when($data['from'], fn($q) => $q->whereDate('created_at', '>=', $data['from']))
-                            ->when($data['until'], fn($q) => $q->whereDate('created_at', '<=', $data['until']));
+                        return $query->when(
+                            $data['value'],
+                            fn($q) => $q->where(function ($q) use ($data) {
+                                $q->where('name', 'like', '%' . $data['value'] . '%')
+                                ->orWhere('email', 'like', '%' . $data['value'] . '%')
+                                ->orWhere('address', 'like', '%' . $data['value'] . '%')
+                                ->orWhere('phone', 'like', '%' . $data['value'] . '%')
+                                ->orWhere('cv', 'like', '%' . $data['value'] . '%');
+                            })
+                        );
                     }),
-
-                Filter::make('recently_updated')
-                    ->query(fn($query) => $query->where('updated_at', '>=', now()->subDays(7))),
             ])
+
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

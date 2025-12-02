@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
@@ -39,7 +40,65 @@ class AnaabsTable
             ])
 
             ->filters([
-            ])
+            Filter::make('name')
+                ->form([
+                    TextInput::make('value')->label('Name'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('name', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+
+            Filter::make('phone')
+                ->form([
+                    TextInput::make('value')->label('Phone'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('phone', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+
+            Filter::make('email')
+                ->form([
+                    TextInput::make('value')->label('Email'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('email', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+
+            SelectFilter::make('residence_id')
+                ->relationship('residence', 'name')
+                ->label('Residence'),
+
+            Filter::make('created_at')
+                ->form([
+                    DatePicker::make('from')->label('From'),
+                    DatePicker::make('until')->label('Until'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query
+                        ->when($data['from'], fn($q) => $q->whereDate('created_at', '>=', $data['from']))
+                        ->when($data['until'], fn($q) => $q->whereDate('created_at', '<=', $data['until']))
+                ),
+
+            Filter::make('updated_at')
+                ->form([
+                    DatePicker::make('from')->label('From'),
+                    DatePicker::make('until')->label('Until'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query
+                        ->when($data['from'], fn($q) => $q->whereDate('updated_at', '>=', $data['from']))
+                        ->when($data['until'], fn($q) => $q->whereDate('updated_at', '<=', $data['until']))
+                ),
+
+            Filter::make('recently_updated')
+                ->query(fn($query) => $query->where('updated_at', '>=', now()->subDays(7))),
+        ])
 
             ->recordActions([
                 ViewAction::make(),

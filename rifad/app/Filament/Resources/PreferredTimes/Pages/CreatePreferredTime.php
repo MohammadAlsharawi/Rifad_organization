@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePreferredTime extends CreateRecord
 {
     protected static string $resource = PreferredTimeResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

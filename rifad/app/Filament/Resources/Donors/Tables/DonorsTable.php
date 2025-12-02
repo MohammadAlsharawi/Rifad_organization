@@ -42,31 +42,72 @@ class DonorsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Filter::make('donated_amount')
-                    ->form([
-                        TextInput::make('min')->numeric()->label('Min Amount'),
-                        TextInput::make('max')->numeric()->label('Max Amount'),
-                    ])
-                    ->query(function ($query, array $data) {
-                        return $query
-                            ->when($data['min'], fn($q) => $q->where('donated_amount', '>=', $data['min']))
-                            ->when($data['max'], fn($q) => $q->where('donated_amount', '<=', $data['max']));
-                    }),
+            Filter::make('name')
+                ->form([
+                    TextInput::make('value')->label('Name'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('name', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
 
-                SelectFilter::make('project_id')
-                    ->relationship('project', 'title'),
+            Filter::make('email')
+                ->form([
+                    TextInput::make('value')->label('Email'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('email', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
 
-                Filter::make('created_at')
-                    ->form([
-                        DatePicker::make('from')->label('From'),
-                        DatePicker::make('until')->label('Until'),
-                    ])
-                    ->query(function ($query, array $data) {
-                        return $query
-                            ->when($data['from'], fn($q) => $q->whereDate('created_at', '>=', $data['from']))
-                            ->when($data['until'], fn($q) => $q->whereDate('created_at', '<=', $data['until']));
-                    }),
-            ])
+            Filter::make('phone')
+                ->form([
+                    TextInput::make('value')->label('Phone'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('phone', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+            Filter::make('donated_amount')
+                ->form([
+                    TextInput::make('min')->numeric()->label('Min Amount'),
+                    TextInput::make('max')->numeric()->label('Max Amount'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query
+                        ->when($data['min'], fn($q) => $q->where('donated_amount', '>=', $data['min']))
+                        ->when($data['max'], fn($q) => $q->where('donated_amount', '<=', $data['max']))
+                ),
+
+            SelectFilter::make('project_id')
+                ->relationship('project', 'title')
+                ->label('Project'),
+
+            Filter::make('created_at')
+                ->form([
+                    DatePicker::make('from')->label('From'),
+                    DatePicker::make('until')->label('Until'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query
+                        ->when($data['from'], fn($q) => $q->whereDate('created_at', '>=', $data['from']))
+                        ->when($data['until'], fn($q) => $q->whereDate('created_at', '<=', $data['until']))
+                ),
+
+            Filter::make('updated_at')
+                ->form([
+                    DatePicker::make('from')->label('From'),
+                    DatePicker::make('until')->label('Until'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query
+                        ->when($data['from'], fn($q) => $q->whereDate('updated_at', '>=', $data['from']))
+                        ->when($data['until'], fn($q) => $q->whereDate('updated_at', '<=', $data['until']))
+                ),
+        ])
             ->recordActions([
                 ViewAction::make(),
                 EditAction::make(),

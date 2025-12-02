@@ -42,39 +42,88 @@ class LabibsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                Filter::make('province')
-                    ->form([
-                        TextInput::make('value')->label('Province'),
-                    ])
-                    ->query(function ($query, array $data) {
-                        return $query->when(
-                            $data['value'],
-                            fn($q) => $q->where('province', 'like', '%' . $data['value'] . '%')
-                        );
-                    }),
+            Filter::make('full_name')
+                ->form([
+                    TextInput::make('value')->label('Full Name'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('full_name', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
 
-                Filter::make('grade')
-                    ->form([
-                        TextInput::make('value')->label('Grade'),
-                    ])
-                    ->query(function ($query, array $data) {
-                        return $query->when(
-                            $data['value'],
-                            fn($q) => $q->where('grade', 'like', '%' . $data['value'] . '%')
-                        );
-                    }),
+            Filter::make('province')
+                ->form([
+                    TextInput::make('value')->label('Province'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('province', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
 
-                Filter::make('course')
-                    ->form([
-                        TextInput::make('value')->label('Course'),
-                    ])
-                    ->query(function ($query, array $data) {
-                        return $query->when(
-                            $data['value'],
-                            fn($q) => $q->where('course', 'like', '%' . $data['value'] . '%')
-                        );
-                    }),
-            ])
+            Filter::make('grade')
+                ->form([
+                    TextInput::make('value')->label('Grade'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('grade', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+
+            Filter::make('email')
+                ->form([
+                    TextInput::make('value')->label('Email'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('email', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+
+            Filter::make('phone')
+                ->form([
+                    TextInput::make('value')->label('Phone'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('phone', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+
+            Filter::make('course')
+                ->form([
+                    TextInput::make('value')->label('Course'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query->when($data['value'], fn($q) =>
+                        $q->where('course', 'like', '%' . $data['value'] . '%')
+                    )
+                ),
+
+            Filter::make('created_at')
+                ->form([
+                    DatePicker::make('from')->label('From'),
+                    DatePicker::make('until')->label('Until'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query
+                        ->when($data['from'], fn($q) => $q->whereDate('created_at', '>=', $data['from']))
+                        ->when($data['until'], fn($q) => $q->whereDate('created_at', '<=', $data['until']))
+                ),
+
+            Filter::make('updated_at')
+                ->form([
+                    DatePicker::make('from')->label('From'),
+                    DatePicker::make('until')->label('Until'),
+                ])
+                ->query(fn($query, array $data) =>
+                    $query
+                        ->when($data['from'], fn($q) => $q->whereDate('updated_at', '>=', $data['from']))
+                        ->when($data['until'], fn($q) => $q->whereDate('updated_at', '<=', $data['until']))
+                ),
+        ])
 
             ->recordActions([
                 ViewAction::make(),

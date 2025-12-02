@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateITeachForSyria extends CreateRecord
 {
     protected static string $resource = ITeachForSyriaResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

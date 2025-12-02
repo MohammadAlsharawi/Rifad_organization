@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateOnlineArabicPath extends CreateRecord
 {
     protected static string $resource = OnlineArabicPathResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateChallenge extends CreateRecord
 {
     protected static string $resource = ChallengeResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

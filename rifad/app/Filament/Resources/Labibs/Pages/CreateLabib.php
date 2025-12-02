@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateLabib extends CreateRecord
 {
     protected static string $resource = LabibResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

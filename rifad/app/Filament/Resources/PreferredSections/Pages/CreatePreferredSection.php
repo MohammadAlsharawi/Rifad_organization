@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreatePreferredSection extends CreateRecord
 {
     protected static string $resource = PreferredSectionResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

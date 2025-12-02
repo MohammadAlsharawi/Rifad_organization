@@ -15,8 +15,7 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->required(),
                 TextInput::make('email')
                     ->label('Email address')
                     ->email()
@@ -26,24 +25,19 @@ class UserForm
                     ->password()
                     ->required(),
                 TextInput::make('nationality')
-                    ->default(null)
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->default(null),
                 TextInput::make('phone_number')
                     ->tel()
                     ->default(null),
                 DatePicker::make('birthdate'),
                 TextInput::make('address')
-                    ->default(null)
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->default(null),
                 TextInput::make('first_name')
-                    ->default(null)
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->default(null),
                 TextInput::make('father_name')
-                    ->default(null)
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->default(null),
                 TextInput::make('last_name')
-                    ->default(null)
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->default(null),
                 Select::make('gender')
                     ->options(['male' => 'Male', 'female' => 'Female'])
                     ->default(null),

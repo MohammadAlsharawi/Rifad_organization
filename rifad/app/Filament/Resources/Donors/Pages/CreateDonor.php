@@ -15,7 +15,7 @@ class CreateDonor extends CreateRecord
         $project = Project::find($donor['project_id']);
 
         if ($project && ($project->secured_amount + $donor['donated_amount']) > $project->total_amount) {
-            $this->halt(); 
+            $this->halt();
             $this->notify('danger', 'Donation exceeds project total amount!');
         }
     }
@@ -36,5 +36,9 @@ class CreateDonor extends CreateRecord
                 'secured_amount' => $newSecured,
             ]);
         }
+    }
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
     }
 }

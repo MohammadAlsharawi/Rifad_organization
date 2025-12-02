@@ -8,4 +8,8 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateDegree extends CreateRecord
 {
     protected static string $resource = DegreeResource::class;
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

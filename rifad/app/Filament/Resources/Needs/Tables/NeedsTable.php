@@ -7,6 +7,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
@@ -45,6 +46,16 @@ class NeedsTable
 
                 Filter::make('recently_updated')
                     ->query(fn($query) => $query->where('updated_at', '>=', now()->subDays(7))),
+                Filter::make('name')
+                ->form([
+                    TextInput::make('value')->label('Name'),
+                ])
+                ->query(function ($query, array $data) {
+                    return $query->when(
+                        $data['value'],
+                        fn($q) => $q->where('name', 'like', '%' . $data['value'] . '%')
+                    );
+                }),
             ])
             ->recordActions([
                 ViewAction::make(),
