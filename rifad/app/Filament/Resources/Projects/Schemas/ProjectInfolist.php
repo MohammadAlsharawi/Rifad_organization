@@ -18,6 +18,8 @@ class ProjectInfolist
                     ->numeric(),
                 TextEntry::make('secured_amount')
                     ->numeric(),
+                TextEntry::make('status'),
+                TextEntry::make('category'),
                 TextEntry::make('organization_id')
                     ->numeric(),
                 TextEntry::make('created_at')

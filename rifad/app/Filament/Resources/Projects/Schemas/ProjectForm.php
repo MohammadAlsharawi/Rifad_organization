@@ -17,16 +17,13 @@ class ProjectForm
                 FileUpload::make('image')
                     ->image(),
                 TextInput::make('title')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->required(),
                 Textarea::make('description')
                     ->required()
-                    ->columnSpanFull()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->columnSpanFull(),
                 Textarea::make('reason')
                     ->required()
-                    ->columnSpanFull()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                    ->columnSpanFull(),
                 TextInput::make('total_amount')
                     ->required()
                     ->numeric(),
@@ -34,12 +31,20 @@ class ProjectForm
                     ->required()
                     ->numeric()
                     ->default(0.0),
+                Select::make('status')
+                    ->options(['completed' => 'Completed', 'in_progress' => 'In progress', 'failed' => 'Failed'])
+                    ->default('in_progress')
+                    ->required(),
+                Select::make('category')
+                    ->options(['campaigns' => 'Campaigns', 'initiative' => 'Initiative'])
+                    ->required(),
                 Select::make('organization_id')
-                    ->label('Organization')
-                    ->relationship('organization', 'name')
-                    ->searchable()
-                    ->preload()
-                    ->required()
+                ->label('Organization')
+                ->relationship('organization', 'name')
+                ->searchable()
+                ->preload()
+                ->required(),
+
             ]);
     }
 }

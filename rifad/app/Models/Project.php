@@ -8,7 +8,8 @@ class Project extends Model
 {
     protected $fillable = [
         'image','title','description','reason',
-        'total_amount','secured_amount','organization_id'
+        'total_amount','secured_amount','organization_id',
+        'status','category'
     ];
 
     protected $casts = [

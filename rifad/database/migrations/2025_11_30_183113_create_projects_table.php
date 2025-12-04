@@ -19,7 +19,8 @@ return new class extends Migration
             $table->text('reason');
             $table->decimal('total_amount', 12, 2);
             $table->decimal('secured_amount', 12, 2)->default(0);
-
+            $table->enum('status',['completed','in_progress','failed'])->default('in_progress');
+            $table->enum('category',['campaigns','initiative']);
             $table->foreignId('organization_id')->constrained('organizations');
             $table->timestamps();
         });
