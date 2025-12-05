@@ -20,6 +20,7 @@ class OnlineArabicPathsTable
     public static function configure(Table $table): Table
     {
         return $table
+        ->searchable(false)
         ->columns([
             TextColumn::make('full_name')
                 ->searchable(),
@@ -35,10 +36,6 @@ class OnlineArabicPathsTable
                 ->searchable(),
             TextColumn::make('email')
                 ->label('Email address')
-                ->searchable(),
-            TextColumn::make('origin_country')
-                ->searchable(),
-            TextColumn::make('residence_country')
                 ->searchable(),
 
             // ✅ Relations instead of numeric IDs

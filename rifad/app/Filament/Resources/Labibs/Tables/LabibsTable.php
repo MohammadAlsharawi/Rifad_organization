@@ -18,19 +18,14 @@ class LabibsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->searchable(false)
             ->columns([
                 TextColumn::make('full_name')
-                    ->searchable(),
-                TextColumn::make('province')
-                    ->searchable(),
-                TextColumn::make('grade')
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('phone')
-                    ->searchable(),
-                TextColumn::make('course')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

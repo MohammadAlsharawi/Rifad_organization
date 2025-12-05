@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\JoinUs\Schemas;
 
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
@@ -30,9 +31,14 @@ class JoinUsForm
                     ->default(null)
                     ->columnSpanFull()
                     ->regex('/^[\pL\s\-]+$/u'),
-                TextInput::make('cv')
-                    ->default(null)
-                    ->acceptedFileTypes(['application/pdf']),
+                FileUpload::make('cv')
+                    ->disk('public')
+                    ->directory('cvs')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->required()
+                    ->downloadable()
+                    ->openable()
+                    ->preserveFilenames(),
                 Toggle::make('confirmed')
                     ->required(),
             ]);

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\LastestUpdates\Schemas;
 
+use Filament\Infolists\Components\ImageEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
 
@@ -11,7 +12,9 @@ class LastestUpdateInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('photo'),
+                ImageEntry::make('photo')
+                ->square()
+                ->size(300),
                 TextEntry::make('title'),
                 TextEntry::make('date')
                     ->date(),

@@ -9,6 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\TimePicker;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
@@ -18,9 +19,12 @@ class LastestUpdatesTable
     public static function configure(Table $table): Table
     {
         return $table
+                ->searchable(false)
                 ->columns([
-                    TextColumn::make('photo')
-                        ->searchable(),
+                    ImageColumn::make('photo')
+                        ->square()
+                        ->circular()
+                        ->size(80),
                     TextColumn::make('title')
                         ->searchable(),
                     TextColumn::make('date')

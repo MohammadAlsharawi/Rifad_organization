@@ -19,6 +19,7 @@ class ITeachForSyriasTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->searchable(false)
             ->columns([
                 TextColumn::make('full_name')
                     ->searchable(),
@@ -29,26 +30,6 @@ class ITeachForSyriasTable
                     ->searchable(),
                 TextColumn::make('residence')
                     ->searchable(),
-                TextColumn::make('birth_year'),
-                TextColumn::make('gender'),
-                TextColumn::make('degree.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('sector.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('experienceYear.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('trainingType.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('need.name')
-                    ->numeric()
-                    ->sortable(),
-                TextColumn::make('course.name')
-                    ->numeric()
-                    ->sortable(),
                 IconColumn::make('confirmed')
                     ->boolean(),
                 TextColumn::make('created_at')

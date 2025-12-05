@@ -12,8 +12,6 @@ class ReviewForm
     {
         return $schema
             ->components([
-                TextInput::make('photo')
-                    ->required(),
                 Textarea::make('review')
                     ->required()
                     ->columnSpanFull(),

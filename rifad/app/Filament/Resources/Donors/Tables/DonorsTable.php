@@ -18,6 +18,7 @@ class DonorsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->searchable(false)
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),

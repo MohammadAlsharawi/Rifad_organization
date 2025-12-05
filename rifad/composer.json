@@ -10,7 +10,8 @@
         "bezhansalleh/filament-language-switch": "^4.0",
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "yebor974/filament-renew-password": "3.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

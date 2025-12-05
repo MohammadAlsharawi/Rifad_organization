@@ -24,9 +24,7 @@ class DonorForm
                     ->default(null),
                 TextInput::make('donated_amount')
                     ->required()
-                    ->numeric()
-                    ->minValue(1)
-                    ->maxValue(15),
+                    ->numeric(),
                     Select::make('project_id')
                         ->label('Project')
                         ->relationship('project', 'title') // assumes Donor model has project() relation

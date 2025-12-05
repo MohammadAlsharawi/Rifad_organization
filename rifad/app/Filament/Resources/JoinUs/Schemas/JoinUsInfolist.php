@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\JoinUs\Schemas;
 
+use Filament\Actions\Action as ActionsAction;
 use Filament\Infolists\Components\IconEntry;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Schema;
+use Filament\Infolists\Components\Actions\Action;
+use Filament\Support\Enums\IconSize;
 
 class JoinUsInfolist
 {
@@ -17,7 +20,13 @@ class JoinUsInfolist
                     ->label('Email address'),
                 TextEntry::make('address'),
                 TextEntry::make('phone'),
-                TextEntry::make('cv'),
+                IconEntry::make('cv')
+                    ->label('CV File')
+                    ->url(fn ($record) => asset('storage/' . $record->cv))
+                    ->icon('heroicon-o-document-text')
+                    ->openUrlInNewTab()
+                    ->color('success')
+                    ->size(IconSize::ExtraLarge),
                 IconEntry::make('confirmed')
                     ->boolean(),
                 TextEntry::make('created_at')

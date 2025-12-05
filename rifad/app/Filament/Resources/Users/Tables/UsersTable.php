@@ -18,6 +18,7 @@ class UsersTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->searchable(false)
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
@@ -35,22 +36,14 @@ class UsersTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('nationality')
-                    ->searchable(),
-                TextColumn::make('phone_number')
-                    ->searchable(),
-                TextColumn::make('birthdate')
-                    ->date()
-                    ->sortable(),
-                TextColumn::make('address')
-                    ->searchable(),
+
                 TextColumn::make('first_name')
                     ->searchable(),
                 TextColumn::make('father_name')
                     ->searchable(),
                 TextColumn::make('last_name')
                     ->searchable(),
-                TextColumn::make('gender'),
+                
             ])
              ->filters([
                 Filter::make('name')

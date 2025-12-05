@@ -20,6 +20,7 @@ class ProjectsTable
     public static function configure(Table $table): Table
     {
         return $table
+        ->searchable(false)
     ->columns([
         ImageColumn::make('image'),
 

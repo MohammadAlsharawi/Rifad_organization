@@ -17,9 +17,8 @@ class ReviewsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->searchable(false)
             ->columns([
-                TextColumn::make('photo')
-                    ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('created_at')
