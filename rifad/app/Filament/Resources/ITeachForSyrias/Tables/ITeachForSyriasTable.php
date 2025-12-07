@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ITeachForSyrias\Tables;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -40,6 +41,11 @@ class ITeachForSyriasTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->headerActions([
+                FilamentExportHeaderAction::make('export')
+                    ->label('Export')
+                    ->fileName('ITeachFroSyria'),
             ])
             ->filters([
                 SelectFilter::make('gender')

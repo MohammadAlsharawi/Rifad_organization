@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Volunteerings\Tables;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -54,6 +55,11 @@ class VolunteeringsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->headerActions([
+                FilamentExportHeaderAction::make('export')
+                    ->label('Export')
+                    ->fileName('Volunteerings'),
             ])
             ->filters([
                 Filter::make('name')

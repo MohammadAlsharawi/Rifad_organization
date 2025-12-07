@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\Projects\Tables;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
+use App\Models\Project;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -14,6 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class ProjectsTable
 {
@@ -21,7 +25,7 @@ class ProjectsTable
     {
         return $table
         ->searchable(false)
-    ->columns([
+        ->columns([
         ImageColumn::make('image'),
 
         TextColumn::make('title')
@@ -62,6 +66,11 @@ class ProjectsTable
             ->dateTime()
             ->sortable()
             ->toggleable(isToggledHiddenByDefault: true),
+    ])
+    ->headerActions([
+                FilamentExportHeaderAction::make('export')
+                    ->label('Export')
+                    ->fileName('projects'),
     ])
     ->filters([
         Filter::make('title')

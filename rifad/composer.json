@@ -7,11 +7,13 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "alperenersoy/filament-export": "^4.0",
         "bezhansalleh/filament-language-switch": "^4.0",
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
+        "spatie/simple-excel": "^3.7",
         "yebor974/filament-renew-password": "3.0"
     },
     "require-dev": {

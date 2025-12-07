@@ -6,6 +6,7 @@ use App\Http\Controllers\API\JoinUsController;
 use App\Http\Controllers\API\LabibController;
 use App\Http\Controllers\API\NewsController;
 use App\Http\Controllers\API\OnlineArabicPathController;
+use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\ReviewController;
 use App\Http\Controllers\API\VolunteeringController;
 use Illuminate\Http\Request;
@@ -37,3 +38,8 @@ Route::get('/news/{id}', [NewsController::class, 'show']);
 
 Route::get('/reviews', [ReviewController::class, 'index']);
 Route::get('/reviews/{id}', [ReviewController::class, 'show']);
+
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/projects/{id}', [ProjectController::class, 'show']);
+Route::get('/projects-campaigns', [ProjectController::class, 'campaigns']);
+Route::get('/projects-initiatives', [ProjectController::class, 'initiatives']);

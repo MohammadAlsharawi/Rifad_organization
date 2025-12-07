@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Donors\Tables;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -41,6 +42,11 @@ class DonorsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->headerActions([
+                FilamentExportHeaderAction::make('export')
+                    ->label('Export')
+                    ->fileName('Donors'),
             ])
             ->filters([
             Filter::make('name')

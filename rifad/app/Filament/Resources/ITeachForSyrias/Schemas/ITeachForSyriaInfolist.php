@@ -20,17 +20,23 @@ class ITeachForSyriaInfolist
                 TextEntry::make('birth_year'),
                 TextEntry::make('gender'),
                 TextEntry::make('degree.name')
-                    ->numeric(),
+                    ->numeric()
+                    ->label('degree name'),
                 TextEntry::make('sector.name')
-                    ->numeric(),
+                    ->numeric()
+                    ->label('sector name'),
                 TextEntry::make('experienceYear.name')
-                    ->numeric(),
+                    ->numeric()
+                    ->label('experience name'),
                 TextEntry::make('trainingType.name')
-                    ->numeric(),
+                    ->numeric()
+                    ->label('training type'),
                 TextEntry::make('need.name')
-                    ->numeric(),
+                    ->numeric()
+                    ->label('need'),
                 TextEntry::make('course.name')
-                    ->numeric(),
+                    ->numeric()
+                    ->label('course name'),
                 IconEntry::make('confirmed')
                     ->boolean(),
                 TextEntry::make('created_at')

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Labibs\Tables;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -27,6 +28,15 @@ class LabibsTable
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
+                TextColumn::make('province')
+                ->label('Province')
+                ->sortable(),
+                TextColumn::make('grade')
+                ->label('Grade')
+                ->sortable(),
+                TextColumn::make('course')
+                ->label('Course')
+                ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -35,6 +45,11 @@ class LabibsTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->headerActions([
+                FilamentExportHeaderAction::make('export')
+                    ->label('Export')
+                    ->fileName('labibs'),
             ])
             ->filters([
             Filter::make('full_name')

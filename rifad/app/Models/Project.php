@@ -26,4 +26,11 @@ class Project extends Model
     {
         return $this->hasMany(Donor::class);
     }
+    public function getSecuredPercentageAttribute(): float
+    {
+        if ($this->total_amount <= 0) {
+            return 0;
+        }
+        return round(($this->secured_amount / $this->total_amount) * 100, 2);
+    }
 }

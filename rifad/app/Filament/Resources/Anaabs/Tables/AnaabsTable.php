@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Anaabs\Tables;
 
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -39,7 +40,11 @@ class AnaabsTable
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-
+            ->headerActions([
+                FilamentExportHeaderAction::make('export')
+                    ->label('Export')
+                    ->fileName('Anaabs'),
+            ])
             ->filters([
             Filter::make('name')
                 ->form([
