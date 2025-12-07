@@ -26,21 +26,5 @@ class AnaabService
         }
     }
 
-    public function index()
-    {
-        try {
-            return Anaab::all();
-        } catch (Exception $e) {
-            throw new Exception("Failed to retrieve Anaabs: " . $e->getMessage());
-        }
-    }
-
-    public function show(int $id): ?Anaab
-    {
-        try {
-            return Anaab::findOrFail($id);
-        } catch (Exception $e) {
-            throw new Exception("Anaab not found: " . $e->getMessage());
-        }
-    }
+    
 }

@@ -33,7 +33,7 @@ class storeRequest extends FormRequest
             'experience_year_id'  => 'required|exists:experience_years,id',
             'training_type_id'    => 'required|exists:training_types,id',
             'need_id'             => 'required|exists:needs,id',
-            'course_id'           => 'required|exists:courses,id',
+            'course_id'           => 'required|exists:course_names,id',
             'confirmed'           => 'required|boolean',
         ];
     }

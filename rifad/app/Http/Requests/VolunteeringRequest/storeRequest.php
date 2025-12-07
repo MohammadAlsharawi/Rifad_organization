@@ -29,7 +29,7 @@ class storeRequest extends FormRequest
             'phone'             => 'nullable|string|max:255',
             'age'               => 'nullable|integer|min:0',
             'qualification_id'  => 'required|exists:qualifications,id',
-            'preferred_type_id' => 'required|exists:preferred_types,id',
+            'preferred_type_id' => 'required|exists:volunteer_types,id',
             'photo_consent'     => 'required|boolean',
         ];
     }
