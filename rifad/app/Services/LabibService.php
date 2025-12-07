@@ -16,21 +16,4 @@ class LabibService
         }
     }
 
-    public function index()
-    {
-        try {
-            return Labib::all();
-        } catch (Exception $e) {
-            throw new Exception("Failed to retrieve Labibs: " . $e->getMessage());
-        }
-    }
-
-    public function show(int $id): Labib
-    {
-        try {
-            return Labib::findOrFail($id);
-        } catch (Exception $e) {
-            throw new Exception("Labib not found: " . $e->getMessage());
-        }
-    }
 }

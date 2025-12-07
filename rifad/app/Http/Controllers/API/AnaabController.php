@@ -38,24 +38,4 @@ class AnaabController extends Controller
             return $this->errorResponse($e->getMessage(), 500);
         }
     }
-
-    public function index()
-    {
-        try {
-            $anaabs = $this->service->index();
-            return $this->successResponse($anaabs, 'All Anaabs retrieved successfully');
-        } catch (Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
-    }
-
-    public function show(int $id)
-    {
-        try {
-            $anaab = $this->service->show($id);
-            return $this->successResponse($anaab, 'Anaab retrieved successfully');
-        } catch (Exception $e) {
-            return $this->errorResponse($e->getMessage(), 404);
-        }
-    }
 }

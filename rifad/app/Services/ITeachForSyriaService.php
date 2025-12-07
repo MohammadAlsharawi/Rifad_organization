@@ -12,25 +12,6 @@ use App\Models\TrainingType;
 
 class ITeachForSyriaService
 {
-    public function getAll()
-    {
-        try{
-            $data = ITeachForSyria::all();
-            return $data;
-        }catch(\Exception $e){
-            return $e->getMessage();
-        }
-    }
-
-    public function getById(int $id)
-    {
-        try{
-            $data = ITeachForSyria::find($id);
-            return $data;
-        }catch(\Exception $e){
-            return $e->getMessage();
-        }
-    }
     public function create(array $data)
     {
         try{

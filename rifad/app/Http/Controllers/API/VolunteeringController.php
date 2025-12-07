@@ -3,20 +3,19 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\OnlineArabicPathRequest\storeRequest;
-use App\Http\Requests\StudentRequest;
-use App\Services\OnlineArabicPathService;
-use App\Services\StudentService;
+use App\Http\Requests\VolunteeringRequest;
+use App\Http\Requests\VolunteeringRequest\storeRequest;
+use App\Services\VolunteeringService;
 use App\Traits\ApiResponse;
 use Exception;
 
-class OnlineArabicPathController extends Controller
+class VolunteeringController extends Controller
 {
     use ApiResponse;
 
-    protected OnlineArabicPathService $service;
+    protected VolunteeringService $service;
 
-    public function __construct(OnlineArabicPathService $service)
+    public function __construct(VolunteeringService $service)
     {
         $this->service = $service;
     }
@@ -24,8 +23,8 @@ class OnlineArabicPathController extends Controller
     public function store(storeRequest $request)
     {
         try {
-            $student = $this->service->store($request->validated());
-            return $this->successResponse($student, 'Student created successfully');
+            $volunteer = $this->service->store($request->validated());
+            return $this->successResponse($volunteer, 'Volunteering created successfully');
         } catch (Exception $e) {
             return $this->errorResponse($e->getMessage(), 500);
         }

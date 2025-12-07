@@ -30,23 +30,4 @@ class LabibController extends Controller
         }
     }
 
-    public function index()
-    {
-        try {
-            $labibs = $this->service->index();
-            return $this->successResponse($labibs, 'All Labibs retrieved successfully');
-        } catch (Exception $e) {
-            return $this->errorResponse($e->getMessage(), 500);
-        }
-    }
-
-    public function show(int $id)
-    {
-        try {
-            $labib = $this->service->show($id);
-            return $this->successResponse($labib, 'Labib retrieved successfully');
-        } catch (Exception $e) {
-            return $this->errorResponse($e->getMessage(), 404);
-        }
-    }
 }

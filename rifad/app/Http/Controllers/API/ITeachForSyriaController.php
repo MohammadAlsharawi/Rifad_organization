@@ -16,27 +16,6 @@ class ITeachForSyriaController extends Controller
     {
         $this->ITechForSyria = $ITechForSyria;
     }
-    public function index()
-    {
-        try{
-            $data = $this->ITechForSyria->getAll();
-            return $this->successResponse($data, 'All I Teach records retrieved successfully.');
-        }catch(\Exception $e){
-            return $this->errorResponse($e->getMessage());
-        }
-    }
-    public function show(int $id)
-    {
-        try{
-            $response = $this->ITechForSyria->getById($id);
-            if (!$response) {
-            return $this->errorResponse('ITeach record not found');
-            }
-            return $this->successResponse($response, 'ITeach record retrieved successfully');
-        }catch(\Exception $e){
-            return $this->errorResponse($e->getMessage());
-        }
-    }
     public function store(storeRequest $request)
     {
         try{

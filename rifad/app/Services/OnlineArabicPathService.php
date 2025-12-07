@@ -25,24 +25,6 @@ class OnlineArabicPathService
         }
     }
 
-    public function index()
-    {
-        try {
-            return OnlineArabicPath::all();
-        } catch (Exception $e) {
-            throw new Exception("Failed to retrieve students: " . $e->getMessage());
-        }
-    }
-
-    public function show(int $id)
-    {
-        try {
-            return OnlineArabicPath::findOrFail($id);
-        } catch (Exception $e) {
-            throw new Exception("Student not found: " . $e->getMessage());
-        }
-    }
-
     public function getAllFkData(): array
     {
         try {
