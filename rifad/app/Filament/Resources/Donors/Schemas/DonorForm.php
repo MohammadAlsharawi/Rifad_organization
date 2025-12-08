@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Donors\Schemas;
 
+use Filament\Forms\Components\Radio;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
@@ -32,6 +33,19 @@ class DonorForm
                         ->required()
                         ->preload()
                         ->rules(['exists:projects,id']),
+                        Radio::make('donate')
+                        ->options([
+                            'monthly'  => 'Monthly',
+                            'one_time' => 'One Time',
+                        ])
+                        ->required(),
+                    Select::make('status')
+                        ->options([
+                            'pending' => 'Pending',
+                            'success' => 'Success',
+                        ])
+                        ->default('pending')
+
             ]);
     }
 }

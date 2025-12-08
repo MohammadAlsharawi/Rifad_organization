@@ -25,6 +25,13 @@ class DonorInfolist
                     ->dateTime(),
                 TextEntry::make('updated_at')
                     ->dateTime(),
+                TextEntry::make('donate')
+                    ->label('Donation Type')
+                    ->badge()
+                    ->colors([
+                        'success' => 'monthly',
+                        'warning' => 'one_time',
+                    ]),
             ]);
     }
 }

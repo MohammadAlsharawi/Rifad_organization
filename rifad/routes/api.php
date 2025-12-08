@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AnaabController;
+use App\Http\Controllers\API\DonorController;
 use App\Http\Controllers\API\ITeachForSyriaController;
 use App\Http\Controllers\API\JoinUsController;
 use App\Http\Controllers\API\LabibController;
@@ -43,3 +44,10 @@ Route::get('/projects', [ProjectController::class, 'index']);
 Route::get('/projects/{id}', [ProjectController::class, 'show']);
 Route::get('/projects-campaigns', [ProjectController::class, 'campaigns']);
 Route::get('/projects-initiatives', [ProjectController::class, 'initiatives']);
+
+
+Route::prefix('donors')->group(function () {
+    Route::post('/', [DonorController::class, 'store']);
+    Route::get('/projects', [DonorController::class, 'projects']);
+    Route::post('/{id}/approve', [DonorController::class, 'approve']); 
+});

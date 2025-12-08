@@ -12,6 +12,8 @@ class Donor extends Model
         'phone',
         'donated_amount',
         'project_id',
+        'donate',
+        'status',
     ];
 
     protected $casts = [
