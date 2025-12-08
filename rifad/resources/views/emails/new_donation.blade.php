@@ -71,7 +71,6 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="{{ public_path('images/logo.svg') }}" alt="Logo">
             <h1>منصّة التبرعات</h1>
         </div>
         <div class="content">
@@ -86,7 +85,7 @@
                 <li><strong>الحالة الحالية:</strong> {{ $donor->status }}</li>
             </ul>
             <div class="cta">
-                <a href="{{ url('/admin/donors') }}">🔗 الدخول للوحة التحكم للموافقة</a>
+                <a href="{{ url('/filament/auth/admin/donors') }}">🔗 الدخول للوحة التحكم للموافقة</a>
             </div>
         </div>
         <div class="footer">
