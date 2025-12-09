@@ -88,6 +88,7 @@ class DonorResource extends Resource
                         ->colors([
                             'warning' => 'pending',
                             'success' => 'success',
+                            'danger'  => 'canceled',
                         ])
             ])
         ->actions([
@@ -120,7 +121,23 @@ class DonorResource extends Resource
                         ->success()
                         ->send();
                 }),
+
+            Action::make('cancel')
+                ->label('Cancel')
+                ->icon('heroicon-o-x-mark')
+                ->color('danger')
+                ->visible(fn ($record) => $record->status === 'pending')
+                ->requiresConfirmation()
+                ->action(function ($record) {
+                    $record->update(['status' => 'canceled']);
+
+                    Notification::make()
+                        ->title('Donation canceled successfully')
+                        ->danger()
+                        ->send();
+                }),
         ])
+
         ->bulkActions([
             DeleteBulkAction::make(),
         ])
