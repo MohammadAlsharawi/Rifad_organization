@@ -20,7 +20,12 @@ class SectorsTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Sector'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

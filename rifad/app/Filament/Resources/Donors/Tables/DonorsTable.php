@@ -25,7 +25,13 @@ class DonorsTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
+
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
@@ -35,8 +41,13 @@ class DonorsTable
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('project.title')
-                    ->numeric()
-                    ->sortable(),
+                    ->label(__('Title'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->project->getTranslation('title', app()->getLocale())
+                    )
+                    ->sortable()
+                    ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -60,7 +71,7 @@ class DonorsTable
                             'success' => 'success',
                         ])
             ])
-            
+
         ->bulkActions([
             DeleteBulkAction::make(),
         ])

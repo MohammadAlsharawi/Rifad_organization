@@ -13,13 +13,35 @@ class ProjectInfolist
         return $schema
             ->components([
                 ImageEntry::make('image'),
-                TextEntry::make('title'),
+                TextEntry::make('title')
+                    ->label(__('Title'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('title', app()->getLocale())
+                    ),
+
+                TextEntry::make('description')
+                    ->label(__('Description'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('description', app()->getLocale())
+                    ),
+
+                TextEntry::make('reason')
+                    ->label(__('Reason'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('reason', app()->getLocale())
+                    ),
                 TextEntry::make('total_amount')
                     ->numeric(),
                 TextEntry::make('secured_amount')
                     ->numeric(),
-                TextEntry::make('status'),
-                TextEntry::make('category'),
+                TextEntry::make('status')
+                    ->label(__('Status'))
+                    ->getStateUsing(fn ($record) => __($record->status)),
+
+                TextEntry::make('category')
+                    ->label(__('Category'))
+                    ->getStateUsing(fn ($record) => __($record->category)),
+
                 TextEntry::make('organization_id')
                     ->numeric(),
                 TextEntry::make('created_at')

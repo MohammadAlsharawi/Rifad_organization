@@ -11,9 +11,13 @@ class OrganizationForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('Organization name (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Organization name (AR)')
+                    ->required(),
             ]);
     }
 }

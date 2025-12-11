@@ -20,7 +20,12 @@ class ParentReasonsTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Parent Reason'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

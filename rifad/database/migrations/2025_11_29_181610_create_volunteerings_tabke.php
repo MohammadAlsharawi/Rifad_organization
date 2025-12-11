@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('volunteerings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->string('email');
             $table->enum('gender', ['male','female'])->nullable();
-            $table->string('address')->nullable();
+            $table->json('address')->nullable();
             $table->string('phone')->nullable();
             $table->integer('age')->nullable();
 

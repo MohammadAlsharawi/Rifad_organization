@@ -20,7 +20,12 @@ class PreferredTimesTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Preferred Time'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

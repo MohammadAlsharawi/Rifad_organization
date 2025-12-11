@@ -1,0 +1,14 @@
+{
+    "pending": "Pending",
+    "success": "Success",
+    "canceled": "Canceled",
+    "one_time": "One-time",
+    "monthly": "Monthly",
+    "male": "Male",
+    "female": "Female",
+    "completed": "Completed",
+    "in_progress": "In Progress",
+    "failed": "Failed",
+    "campaigns": "Campaigns",
+    "initiative": "Initiative"
+}

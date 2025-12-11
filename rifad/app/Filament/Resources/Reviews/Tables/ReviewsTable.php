@@ -19,8 +19,21 @@ class ReviewsTable
         return $table
             ->searchable(false)
             ->columns([
-                TextColumn::make('name')
+
+                TextColumn::make('review')
+                    ->label(__('Review'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('review', app()->getLocale())
+                    )
                     ->searchable(),
+
+                TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
+                    ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

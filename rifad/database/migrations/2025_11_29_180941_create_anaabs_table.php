@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('anaabs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->string('phone');
             $table->string('email')->nullable();
             $table->foreignId('residence_id')->constrained('residences');

@@ -23,11 +23,19 @@ class JoinUsTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Course Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('address')
+                    ->label(__('Address'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('address', app()->getLocale())
+                    )
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),

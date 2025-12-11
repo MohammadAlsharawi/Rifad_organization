@@ -11,9 +11,13 @@ class TrainingTypeForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Training type (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Training type (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

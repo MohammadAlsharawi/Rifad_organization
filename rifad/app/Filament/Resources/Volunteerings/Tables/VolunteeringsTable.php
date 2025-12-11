@@ -24,12 +24,22 @@ class VolunteeringsTable
         ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
-                TextColumn::make('gender'),
+                TextColumn::make('gender')
+                    ->label(__('Gender'))
+                    ->getStateUsing(fn ($record) => __($record->gender)),
                 TextColumn::make('address')
+                    ->label(__('Address'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('address', app()->getLocale())
+                    )
                     ->searchable(),
                 TextColumn::make('phone')
                     ->searchable(),
@@ -38,11 +48,16 @@ class VolunteeringsTable
                     ->sortable(),
 
                 TextColumn::make('qualification.name')
-                    ->label('Qualification')
-                    ->sortable(),
+                    ->label(__('Qualification'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->qualification?->getTranslation('name', app()->getLocale())
+                    ),
+
                 TextColumn::make('preferredType.name')
-                    ->label('Preferred Type')
-                    ->sortable(),
+                    ->label(__('Preferred Type'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->preferredType?->getTranslation('name', app()->getLocale())
+                    ),
 
                 IconColumn::make('photo_consent')
                     ->boolean(),

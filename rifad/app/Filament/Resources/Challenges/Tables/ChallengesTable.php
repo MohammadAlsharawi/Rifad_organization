@@ -19,8 +19,14 @@ class ChallengesTable
         return $table
             ->searchable(false)
             ->columns([
-                TextColumn::make('name')
-                    ->searchable(),
+            TextColumn::make('name')
+                ->label(__('Challenge Name'))
+                ->getStateUsing(fn ($record) =>
+                    $record->getTranslation('name', app()->getLocale())
+                )
+                ->searchable(),
+
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

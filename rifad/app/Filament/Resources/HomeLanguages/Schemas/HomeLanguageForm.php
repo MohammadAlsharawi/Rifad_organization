@@ -11,9 +11,13 @@ class HomeLanguageForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Home Language (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Home Language (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

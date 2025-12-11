@@ -14,123 +14,132 @@ return new class extends Migration
         // Degrees
         Schema::create('degrees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Sectors
         Schema::create('sectors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Experience Years
         Schema::create('experience_years', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Training Types
         Schema::create('training_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Needs
         Schema::create('needs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Courses
         Schema::create('course_names', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Residences
         Schema::create('residences', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Languages
         Schema::create('speaks_arabics', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Reading Levels
         Schema::create('reading_levels', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
         Schema::create('home_languages', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
         Schema::create('friend_languages', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
         // School Types
         Schema::create('school_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Preferred Types
         Schema::create('preferred_sections', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Challenges
         Schema::create('challenges', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Parent Reasons
         Schema::create('parent_reasons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Preferred Times
         Schema::create('preferred_times', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Qualifications
         Schema::create('qualifications', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->timestamps();
         });
 
         // Volunteer Types
         Schema::create('volunteer_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
+            $table->timestamps();
+
+        });
+
+        Schema::create('organizations', function (Blueprint $table) {
+            $table->id();
+            $table->json('name')->nullable();
             $table->timestamps();
         });
+
+
 
     }
 

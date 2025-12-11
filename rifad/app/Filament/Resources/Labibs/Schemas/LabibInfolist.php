@@ -11,13 +11,25 @@ class LabibInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('full_name'),
-                TextEntry::make('province'),
+                TextEntry::make('full_name')
+                    ->label(__('Full Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('full_name', app()->getLocale())
+                    ),
+                TextEntry::make('province')
+                    ->label(__('Province'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('province', app()->getLocale())
+                    ),
                 TextEntry::make('grade'),
                 TextEntry::make('email')
                     ->label('Email address'),
                 TextEntry::make('phone'),
-                TextEntry::make('course'),
+                TextEntry::make('course')
+                    ->label(__('Course'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('course', app()->getLocale())
+                                ),
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

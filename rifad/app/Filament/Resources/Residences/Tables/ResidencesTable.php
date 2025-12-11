@@ -20,7 +20,12 @@ class ResidencesTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Residence Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

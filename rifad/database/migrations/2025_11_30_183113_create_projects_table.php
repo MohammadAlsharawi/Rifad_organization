@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('image')->nullable();
-            $table->string('title');
-            $table->text('description');
-            $table->text('reason');
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
+            $table->json('reason')->nullable();
             $table->decimal('total_amount', 12, 2);
             $table->decimal('secured_amount', 12, 2)->default(0);
             $table->enum('status',['completed','in_progress','failed'])->default('in_progress');

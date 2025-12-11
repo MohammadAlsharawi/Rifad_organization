@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('labibs', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->string('province');
-            $table->string('grade');
+            $table->json('full_name')->nullable();
+            $table->json('province')->nullable();
+            $table->integer('grade');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('course')->nullable();
+            $table->json('course')->nullable();
             $table->timestamps();
         });
     }

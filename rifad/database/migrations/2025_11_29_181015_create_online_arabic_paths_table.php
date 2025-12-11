@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('online_arabic_paths', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
+            $table->json('full_name')->nullable();
             $table->date('birth_date')->nullable();
             $table->enum('gender', ['male','female'])->nullable();
             $table->string('grade')->nullable();
-            $table->string('parent_name')->nullable();
+            $table->json('parent_name')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('origin_country')->nullable();
-            $table->string('residence_country')->nullable();
+            $table->json('origin_country')->nullable();
+            $table->json('residence_country')->nullable();
 
             $table->foreignId('speaks_arabic_id')->constrained('speaks_arabics');
             $table->foreignId('reading_level_id')->constrained('reading_levels');

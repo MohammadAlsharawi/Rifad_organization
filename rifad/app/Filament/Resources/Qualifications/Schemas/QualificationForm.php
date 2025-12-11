@@ -11,9 +11,13 @@ class QualificationForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Qualification (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Qualification (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

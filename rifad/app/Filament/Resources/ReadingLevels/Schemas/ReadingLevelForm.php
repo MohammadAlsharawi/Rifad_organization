@@ -11,9 +11,13 @@ class ReadingLevelForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Reading level name (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Reading level name (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

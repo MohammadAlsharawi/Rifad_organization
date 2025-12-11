@@ -20,7 +20,12 @@ class DegreesTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Degree'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

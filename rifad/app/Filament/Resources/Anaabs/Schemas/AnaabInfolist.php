@@ -11,12 +11,21 @@ class AnaabInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
+                TextEntry::make('name')
+                    ->label(__('Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                            ),
+
                 TextEntry::make('phone'),
                 TextEntry::make('email')
                     ->label('Email address'),
                 TextEntry::make('residence.name')
-                    ->numeric(),
+                    ->label(__('Residence'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->residence?->getTranslation('name', app()->getLocale())
+                                        ),
+
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

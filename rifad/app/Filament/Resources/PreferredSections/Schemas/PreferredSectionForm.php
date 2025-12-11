@@ -11,9 +11,13 @@ class PreferredSectionForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('Preferred Section (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Preferred Section (AR)')
+                    ->required(),
             ]);
     }
 }

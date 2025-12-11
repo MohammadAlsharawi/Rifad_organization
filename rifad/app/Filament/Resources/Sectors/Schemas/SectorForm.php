@@ -11,9 +11,14 @@ class SectorForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Sector (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Sector (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+
             ]);
     }
 }

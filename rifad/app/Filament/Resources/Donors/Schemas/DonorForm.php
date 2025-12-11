@@ -13,9 +13,14 @@ class DonorForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('Donor name (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Donor name (AR)')
+                    ->required(),
+
                 TextInput::make('email')
                     ->label('Email address')
                     ->email()
@@ -26,25 +31,30 @@ class DonorForm
                 TextInput::make('donated_amount')
                     ->required()
                     ->numeric(),
-                    Select::make('project_id')
-                        ->label('Project')
-                        ->relationship('project', 'title') // assumes Donor model has project() relation
-                        ->searchable()
-                        ->required()
-                        ->preload()
-                        ->rules(['exists:projects,id']),
-                        Radio::make('donate')
-                        ->options([
-                            'monthly'  => 'Monthly',
-                            'one_time' => 'One Time',
-                        ])
-                        ->required(),
-                    Select::make('status')
-                        ->options([
-                            'pending' => 'Pending',
-                            'success' => 'Success',
-                        ])
-                        ->default('pending')
+                Select::make('project_id')
+                    ->label(__('Project'))
+                    ->relationship('project', 'title')
+                    ->searchable()
+                    ->required()
+                    ->preload()
+                    ->rules(['exists:projects,id'])
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('title', app()->getLocale())),
+
+                Radio::make('donate')
+                    ->label(__('Donate Type'))
+                    ->options([
+                        'monthly'  => __('monthly'),
+                        'one_time' => __('one_time'),
+                    ])
+                    ->required(),
+                Select::make('status')
+                    ->label(__('Status'))
+                    ->options([
+                        'pending' => __('pending'),
+                        'success' => __('success'),
+                        'canceled' => __('canceled'),
+                    ])
+                    ->default('pending'),
 
             ]);
     }

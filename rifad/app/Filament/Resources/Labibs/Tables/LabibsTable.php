@@ -22,6 +22,10 @@ class LabibsTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('full_name')
+                    ->label(__('Full Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('full_name', app()->getLocale())
+                    )
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
@@ -29,14 +33,23 @@ class LabibsTable
                 TextColumn::make('phone')
                     ->searchable(),
                 TextColumn::make('province')
-                ->label('Province')
-                ->sortable(),
+                    ->label(__('Province'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('province', app()->getLocale())
+                    )
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('grade')
                 ->label('Grade')
                 ->sortable(),
+
                 TextColumn::make('course')
-                ->label('Course')
-                ->sortable(),
+                    ->label(__('Course'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('course', app()->getLocale())
+                    )
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

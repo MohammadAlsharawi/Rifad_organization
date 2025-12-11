@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class OnlineArabicPath extends Model
 {
+    use HasTranslations;
     protected $fillable = [
         'full_name','birth_date','gender','grade','parent_name','phone','email',
         'origin_country','residence_country','speaks_arabic_id','reading_level_id',
@@ -18,6 +20,12 @@ class OnlineArabicPath extends Model
         'birth_date' => 'date',
         'has_difficulty' => 'boolean',
         'confirmed' => 'boolean',
+    ];
+    public $translatable = [
+        'full_name',
+        'parent_name',
+        'origin_country',
+        'residence_country',
     ];
 
     public function speaksArabic()     { return $this->belongsTo(SpeaksArabic::class); }

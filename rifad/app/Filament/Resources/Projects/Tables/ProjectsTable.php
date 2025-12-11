@@ -29,8 +29,11 @@ class ProjectsTable
         ImageColumn::make('image'),
 
         TextColumn::make('title')
-            ->searchable()
-            ->sortable(),
+            ->label(__('Title'))
+            ->getStateUsing(fn ($record) =>
+                $record->getTranslation('title', app()->getLocale())
+            )
+            ->searchable(),
 
         TextColumn::make('total_amount')
             ->numeric()
@@ -40,17 +43,21 @@ class ProjectsTable
             ->numeric()
             ->sortable(),
 
-        BadgeColumn::make('status')
-            ->colors([
-                'completed' => 'success',
-                'in_progress' => 'warning',
-                'failed' => 'danger',
-            ])
-            ->sortable(),
+        TextColumn::make('status')
+            ->label(__('Status'))
+            ->getStateUsing(fn ($record) =>
+                $record->getTranslation('status', app()->getLocale())
+            ),
+
+        TextColumn::make('status')
+            ->label(__('Status'))
+            ->getStateUsing(fn ($record) => __($record->status)),
 
         TextColumn::make('category')
-            ->searchable()
-            ->sortable(),
+            ->label(__('Category'))
+            ->getStateUsing(fn ($record) => __($record->category)),
+
+
 
         TextColumn::make('organization.name')
             ->label('organization')

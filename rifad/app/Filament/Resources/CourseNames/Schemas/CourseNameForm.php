@@ -11,9 +11,13 @@ class CourseNameForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Course Name (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Course Name (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

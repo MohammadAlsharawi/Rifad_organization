@@ -3,18 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class ITeachForSyria extends Model
 {
+    use HasTranslations;
+
     protected $fillable = [
         'full_name','phone','email','residence','birth_year','gender',
         'degree_id','sector_id','experience_year_id','training_type_id',
         'need_id','course_id','confirmed',
     ];
+    public $translatable = [
+        'full_name',
+        'residence',
+        'gender'
+    ];
 
     protected $casts = [
         'confirmed' => 'boolean',
         'birth_year' => 'integer',
+        'gender' => 'string',
     ];
 
     public function degree()         { return $this->belongsTo(Degree::class); }

@@ -11,9 +11,13 @@ class VolunteerTypeForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Volunteer type (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Volunteer type (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

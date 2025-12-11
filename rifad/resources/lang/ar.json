@@ -1,0 +1,15 @@
+{
+    "pending": "قيد الانتظار",
+    "success": "ناجح",
+    "canceled": "ملغى",
+    "one_time": "مرة واحدة",
+    "monthly": "شهري",
+    "male": "ذكر",
+    "female": "أنثى",
+    "completed": "مكتمل",
+    "in_progress": "قيد التنفيذ",
+    "failed": "فشل",
+    "campaigns": "حملات",
+    "initiative": "مبادرة"
+}
+

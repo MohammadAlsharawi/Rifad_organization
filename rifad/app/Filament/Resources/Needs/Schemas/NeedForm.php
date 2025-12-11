@@ -11,9 +11,13 @@ class NeedForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('Need Name (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Need Name (AR)')
+                    ->required(),
             ]);
     }
 }

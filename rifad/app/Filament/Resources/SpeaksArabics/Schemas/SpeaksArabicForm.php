@@ -11,9 +11,13 @@ class SpeaksArabicForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Speaks Arabic (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Speaks Arabic (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

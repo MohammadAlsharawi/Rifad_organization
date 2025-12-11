@@ -12,9 +12,14 @@ class AnaabForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                        ->label('Anaab Name (EN)')
+                        ->regex('/^[\pL\s\-]+$/u')
+                        ->required(),
+                TextInput::make('name.ar')
+                        ->label('Anaab Name (AR)')
+                        ->regex('/^[\pL\s\-]+$/u')
+                        ->required(),
                 TextInput::make('phone')
                     ->tel()
                     ->required(),
@@ -25,9 +30,10 @@ class AnaabForm
                 Select::make('residence_id')
                     ->label('Residence')
                     ->relationship('residence', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) => $record->getTranslation('name', 'ar') . ' / ' . $record->getTranslation('name', 'en'))
                     ->searchable()
                     ->preload()
-                    ->required()
+                    ->required(),
             ]);
     }
 }

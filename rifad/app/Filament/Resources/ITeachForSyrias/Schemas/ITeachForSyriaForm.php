@@ -14,72 +14,119 @@ class ITeachForSyriaForm
     {
         return $schema
             ->components([
-                TextInput::make('full_name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                // الاسم باللغتين
+                TextInput::make('full_name.en')
+                    ->label('Full Name (EN)')
+                    ->required(),
+
+                TextInput::make('full_name.ar')
+                    ->label('Full Name (AR)')
+                    ->required(),
+
+                // الهاتف
                 TextInput::make('phone')
                     ->tel()
                     ->required(),
+
+                // البريد الإلكتروني
                 TextInput::make('email')
                     ->label('Email address')
                     ->email()
                     ->default(null),
-                TextInput::make('residence')
+
+                // مكان الإقامة باللغتين
+                TextInput::make('residence.en')
+                    ->label('Residence (EN)')
                     ->required(),
+
+                TextInput::make('residence.ar')
+                    ->label('Residence (AR)')
+                    ->required(),
+
+                // سنة الميلاد
                 DatePicker::make('birth_year')
                     ->label('Birth Year')
                     ->displayFormat('Y')
-                    ->format('Y') 
+                    ->format('Y')
                     ->default(null)
                     ->required(),
+
                 Select::make('gender')
-                    ->options(['male' => 'Male', 'female' => 'Female'])
-                    ->default(null),
+                    ->label(__('Gender'))
+                    ->options([
+                        'male'   => 'Male / ذكر',
+                        'female' => 'Female / أنثى',
+                    ])
+                    ->default(null)
+                    ->required(),
+
                 Select::make('degree_id')
-                    ->label('Degree')
+                    ->label(__('Degree'))
                     ->relationship('degree', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        $record->getTranslation('name', 'en') . ' / ' . $record->getTranslation('name', 'ar')
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
 
+
                 Select::make('sector_id')
-                    ->label('Sector')
+                    ->label(__('Sector'))
                     ->relationship('sector', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        $record->getTranslation('name', 'en') . ' / ' . $record->getTranslation('name', 'ar')
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
 
                 Select::make('experience_year_id')
-                    ->label('Experience Years')
+                    ->label(__('Experience Years'))
                     ->relationship('experienceYear', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        $record->getTranslation('name', 'en') . ' / ' . $record->getTranslation('name', 'ar')
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
 
                 Select::make('training_type_id')
-                    ->label('Training Type')
+                    ->label(__('Training Type'))
                     ->relationship('trainingType', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        $record->getTranslation('name', 'en') . ' / ' . $record->getTranslation('name', 'ar')
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
 
                 Select::make('need_id')
-                    ->label('Need')
+                    ->label(__('Need'))
                     ->relationship('need', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        $record->getTranslation('name', 'en') . ' / ' . $record->getTranslation('name', 'ar')
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
 
                 Select::make('course_id')
-                    ->label('Course')
+                    ->label(__('Course'))
                     ->relationship('course', 'name')
+                    ->getOptionLabelFromRecordUsing(fn ($record) =>
+                        $record->getTranslation('name', 'en') . ' / ' . $record->getTranslation('name', 'ar')
+                    )
                     ->searchable()
                     ->preload()
                     ->required(),
 
 
+                // تأكيد
                 Toggle::make('confirmed')
+                    ->label(__('Confirmed'))
                     ->required(),
             ]);
+
     }
 }

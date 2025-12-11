@@ -11,9 +11,13 @@ class ParentReasonForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('Parent Reason (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Parent Reason (AR)')
+                    ->required(),
             ]);
     }
 }

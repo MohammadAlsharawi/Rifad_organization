@@ -11,9 +11,13 @@ class FriendLanguageForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('Friend Language (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Friend Language (AR)')
+                    ->required(),
             ]);
     }
 }

@@ -11,9 +11,13 @@ class SchoolTypeForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('School type (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('School type (AR)')
+                    ->required(),
             ]);
     }
 }

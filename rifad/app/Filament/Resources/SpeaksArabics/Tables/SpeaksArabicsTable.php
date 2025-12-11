@@ -20,7 +20,12 @@ class SpeaksArabicsTable
         ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Speaks Arabic'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

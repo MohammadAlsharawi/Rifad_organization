@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->json('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->decimal('donated_amount', 12, 2);
+
+            $table->enum('status', ['pending', 'success','canceled'])->default('pending');
+            $table->enum('donate',['one_time','monthly'])->default('one_time');
 
             $table->foreignId('project_id')->nullable()->constrained('projects');
 

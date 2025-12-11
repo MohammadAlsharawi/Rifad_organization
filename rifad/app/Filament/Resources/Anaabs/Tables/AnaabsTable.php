@@ -22,15 +22,24 @@ class AnaabsTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                            )
                     ->searchable(),
+
                 TextColumn::make('phone')
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
                 TextColumn::make('residence.name')
-                    ->numeric()
-                    ->sortable(),
+                    ->label(__('Residence'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->residence?->getTranslation('name', app()->getLocale())
+                            )
+                    ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -22,26 +22,91 @@ class ITeachForSyriasTable
         return $table
             ->searchable(false)
             ->columns([
+                // الاسم باللغتين
                 TextColumn::make('full_name')
+                    ->label(__('Full Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('full_name', 'en') . ' / ' . $record->getTranslation('full_name', 'ar')
+                    )
                     ->searchable(),
+
+                // الهاتف
                 TextColumn::make('phone')
+                    ->label(__('Phone'))
                     ->searchable(),
+
+                // البريد الإلكتروني
                 TextColumn::make('email')
-                    ->label('Email address')
+                    ->label(__('Email address'))
                     ->searchable(),
+
+                // مكان الإقامة باللغتين
                 TextColumn::make('residence')
+                    ->label(__('Residence'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('residence', 'en') . ' / ' . $record->getTranslation('residence', 'ar')
+                    )
                     ->searchable(),
+
+                // سنة الميلاد
+                TextColumn::make('birth_year')
+                    ->label(__('Birth Year'))
+                    ->sortable(),
+
+                // الدرجة العلمية باللغتين
+                TextColumn::make('degree.name')
+                    ->label(__('Degree'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->degree?->getTranslation('name', 'en') . ' / ' . $record->degree?->getTranslation('name', 'ar')
+                    )
+                    ->sortable(),
+
+                // القطاع باللغتين
+                TextColumn::make('sector.name')
+                    ->label(__('Sector'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->sector?->getTranslation('name', 'en') . ' / ' . $record->sector?->getTranslation('name', 'ar')
+                    )
+                    ->sortable(),
+
+                // سنوات الخبرة باللغتين
+                TextColumn::make('experienceYear.name')
+                    ->label(__('Experience Years'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->experienceYear?->getTranslation('name', 'en') . ' / ' . $record->experienceYear?->getTranslation('name', 'ar')
+                    )
+                    ->sortable(),
+
+                // نوع التدريب باللغتين
+                TextColumn::make('trainingType.name')
+                    ->label(__('Training Type'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->trainingType?->getTranslation('name', 'en') . ' / ' . $record->trainingType?->getTranslation('name', 'ar')
+                    )
+                    ->sortable(),
+
+                // الحاجة باللغتين
+                TextColumn::make('need.name')
+                    ->label(__('Need'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->need?->getTranslation('name', 'en') . ' / ' . $record->need?->getTranslation('name', 'ar')
+                    )
+                    ->sortable(),
+
+                // الدورة باللغتين
+                TextColumn::make('course.name')
+                    ->label(__('Course'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->course?->getTranslation('name', 'en') . ' / ' . $record->course?->getTranslation('name', 'ar')
+                    )
+                    ->sortable(),
+
+                // تأكيد
                 IconColumn::make('confirmed')
+                    ->label(__('Confirmed'))
                     ->boolean(),
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
+
             ->headerActions([
                 FilamentExportHeaderAction::make('export')
                     ->label('Export')

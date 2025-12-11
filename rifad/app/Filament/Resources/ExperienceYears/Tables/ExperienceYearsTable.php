@@ -20,7 +20,12 @@ class ExperienceYearsTable
             ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Experience Year'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

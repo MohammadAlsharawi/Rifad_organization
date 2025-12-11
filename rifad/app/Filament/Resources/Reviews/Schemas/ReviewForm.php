@@ -12,10 +12,19 @@ class ReviewForm
     {
         return $schema
             ->components([
-                Textarea::make('review')
-                    ->required()
-                    ->columnSpanFull(),
-                TextInput::make('name')
+                TextInput::make('review.en')
+                    ->label('Review (EN)')
+                    ->required(),
+
+                TextInput::make('review.ar')
+                    ->label('Review (AR)')
+                    ->required(),
+                TextInput::make('name.en')
+                    ->label('Name (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Name (AR)')
                     ->required(),
             ]);
     }

@@ -24,6 +24,10 @@ class OnlineArabicPathsTable
         ->searchable(false)
         ->columns([
             TextColumn::make('full_name')
+                ->label(__('Full Name'))
+                ->getStateUsing(fn ($record) =>
+                    $record->getTranslation('full_name', app()->getLocale())
+                )
                 ->searchable(),
             TextColumn::make('birth_date')
                 ->date()
@@ -31,7 +35,25 @@ class OnlineArabicPathsTable
             TextColumn::make('gender'),
             TextColumn::make('grade')
                 ->searchable(),
+
             TextColumn::make('parent_name')
+                ->label(__('Parent Name'))
+                ->getStateUsing(fn ($record) =>
+                    $record->getTranslation('parent_name', app()->getLocale())
+                )
+                ->searchable(),
+            TextColumn::make('origin_country')
+                ->label(__('Origin Country'))
+                ->getStateUsing(fn ($record) =>
+                    $record->getTranslation('origin_country', app()->getLocale())
+                )
+                ->searchable(),
+
+            TextColumn::make('residence_country')
+                ->label(__('Residence Country'))
+                ->getStateUsing(fn ($record) =>
+                    $record->getTranslation('residence_country', app()->getLocale())
+                )
                 ->searchable(),
             TextColumn::make('phone')
                 ->searchable(),

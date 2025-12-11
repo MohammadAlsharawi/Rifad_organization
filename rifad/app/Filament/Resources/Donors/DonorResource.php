@@ -55,7 +55,12 @@ class DonorResource extends Resource
          ->searchable(false)
             ->columns([
                 TextColumn::make('name')
+                    ->label(__('Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    )
                     ->searchable(),
+
                 TextColumn::make('email')
                     ->label('Email address')
                     ->searchable(),
@@ -65,8 +70,15 @@ class DonorResource extends Resource
                     ->numeric()
                     ->sortable(),
                 TextColumn::make('project.title')
-                    ->numeric()
-                    ->sortable(),
+                    ->label(__('Title'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->project->getTranslation('title', app()->getLocale())
+                    )
+                    ->sortable()
+                    ->searchable(),
+
+
+
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -75,21 +87,27 @@ class DonorResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                    TextColumn::make('donate')
-                    ->label('Donation Type')
+
+                TextColumn::make('donate')
+                    ->label(__('Donation Type'))
                     ->sortable()
                     ->badge()
                     ->colors([
-                        'success' => 'monthly',
-                        'warning' => 'one_time',
-                    ]),
+                        'monthly'  => 'success',
+                        'one_time' => 'warning',
+                    ])
+                    ->formatStateUsing(fn ($state) => __($state)),
+
                     TextColumn::make('status')
+                        ->label(__('Status'))
                         ->badge()
                         ->colors([
-                            'warning' => 'pending',
-                            'success' => 'success',
-                            'danger'  => 'canceled',
+                            'pending'  => 'warning',
+                            'success'  => 'success',
+                            'canceled' => 'danger',
                         ])
+                        ->formatStateUsing(fn ($state) => __($state)),
+
             ])
         ->actions([
             ViewAction::make(),

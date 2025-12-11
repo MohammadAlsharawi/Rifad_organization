@@ -11,9 +11,13 @@ class ExperienceYearForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Experience Year (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Experience Year (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

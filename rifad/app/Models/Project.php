@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Project extends Model
 {
+    use HasTranslations;
     protected $fillable = [
         'image','title','description','reason',
         'total_amount','secured_amount','organization_id',
@@ -15,6 +17,11 @@ class Project extends Model
     protected $casts = [
         'total_amount' => 'decimal:2',
         'secured_amount' => 'decimal:2',
+    ];
+    public $translatable = [
+        'title',
+        'description',
+        'reason',
     ];
 
     public function organization()

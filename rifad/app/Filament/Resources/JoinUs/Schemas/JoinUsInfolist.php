@@ -15,10 +15,18 @@ class JoinUsInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
+                TextEntry::make('name')
+                    ->label(__('Course Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                    ),
                 TextEntry::make('email')
                     ->label('Email address'),
-                TextEntry::make('address'),
+                TextEntry::make('address')
+                    ->label(__('Address'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('address', app()->getLocale())
+                    ),
                 TextEntry::make('phone'),
                 IconEntry::make('cv')
                     ->label('CV File')

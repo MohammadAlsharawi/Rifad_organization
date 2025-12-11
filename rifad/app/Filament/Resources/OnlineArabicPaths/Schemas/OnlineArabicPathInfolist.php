@@ -12,17 +12,34 @@ class OnlineArabicPathInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('full_name'),
+                TextEntry::make('full_name')
+                    ->label(__('Full Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('full_name', app()->getLocale())
+                    ),
                 TextEntry::make('birth_date')
                     ->date(),
                 TextEntry::make('gender'),
                 TextEntry::make('grade'),
-                TextEntry::make('parent_name'),
+                TextEntry::make('parent_name')
+                    ->label(__('Parent Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('parent_name', app()->getLocale())
+                    ),
                 TextEntry::make('phone'),
                 TextEntry::make('email')
                     ->label('Email address'),
-                TextEntry::make('origin_country'),
-                TextEntry::make('residence_country'),
+                TextEntry::make('origin_country')
+                    ->label(__('Origin Country'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('origin_country', app()->getLocale())
+                    ),
+
+                TextEntry::make('residence_country')
+                    ->label(__('Residence Country'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('residence_country', app()->getLocale())
+                ),
                 TextEntry::make('speaks_arabic_id')
                     ->numeric(),
                 TextEntry::make('reading_level_id')

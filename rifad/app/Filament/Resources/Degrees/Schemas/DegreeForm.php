@@ -11,9 +11,13 @@ class DegreeForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Degree (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Degree (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

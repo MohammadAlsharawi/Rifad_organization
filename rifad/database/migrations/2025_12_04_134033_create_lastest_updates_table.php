@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('lastest_updates', function (Blueprint $table) {
             $table->id();
             $table->string('photo');
-            $table->string('title');
-            $table->text('description');
+            $table->json('title')->nullable();
+            $table->json('description')->nullable();
             $table->date('date');
             $table->time('time');
             $table->timestamps();

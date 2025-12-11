@@ -11,9 +11,13 @@ class PreferredTimeForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Preferred Time (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Preferred Time (AR)')
                     ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
             ]);
     }
 }

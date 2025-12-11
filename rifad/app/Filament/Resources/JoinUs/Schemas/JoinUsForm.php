@@ -14,14 +14,26 @@ class JoinUsForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
+                TextInput::make('name.en')
+                    ->label('Name (EN)')
+                    ->required()
+                    ->regex('/^[\pL\s\-]+$/u'),
+
+                TextInput::make('name.ar')
+                    ->label('Name (AR)')
                     ->required()
                     ->regex('/^[\pL\s\-]+$/u'),
                 TextInput::make('email')
                     ->label('Email address')
                     ->email()
                     ->required(),
-                TextInput::make('address')
+                TextInput::make('address.en')
+                    ->label('Address (EN)')
+                    ->default(null)
+                    ->regex('/^[\pL\s\-]+$/u'),
+
+                TextInput::make('address.ar')
+                    ->label('Address (AR)')
                     ->default(null)
                     ->regex('/^[\pL\s\-]+$/u'),
                 TextInput::make('phone')

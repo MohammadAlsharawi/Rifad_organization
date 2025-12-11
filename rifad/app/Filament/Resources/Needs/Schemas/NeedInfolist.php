@@ -11,7 +11,13 @@ class NeedInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('name'),
+                TextEntry::make('name')
+                    ->label(__('Need Name'))
+                    ->getStateUsing(fn ($record) =>
+                        $record->getTranslation('name', app()->getLocale())
+                            ),
+
+
                 TextEntry::make('created_at')
                     ->dateTime(),
                 TextEntry::make('updated_at')

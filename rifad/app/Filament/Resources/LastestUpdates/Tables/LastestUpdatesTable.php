@@ -26,6 +26,10 @@ class LastestUpdatesTable
                         ->circular()
                         ->size(80),
                     TextColumn::make('title')
+                        ->label(__('Title'))
+                        ->getStateUsing(fn ($record) =>
+                            $record->getTranslation('title', app()->getLocale())
+                        )
                         ->searchable(),
                     TextColumn::make('date')
                         ->date()

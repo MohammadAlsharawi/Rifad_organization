@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('i_teach_for_syrias', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
+            $table->json('full_name')->nullable();
             $table->string('phone');
             $table->string('email')->nullable();
-            $table->string('residence');
+            $table->json('residence')->nullable();
             $table->year('birth_year')->nullable();
             $table->enum('gender', ['male','female'])->nullable();
 

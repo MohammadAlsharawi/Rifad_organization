@@ -11,9 +11,13 @@ class ResidenceForm
     {
         return $schema
             ->components([
-                TextInput::make('name')
-                    ->required()
-                    ->regex('/^[\pL\s\-]+$/u'),
+                TextInput::make('name.en')
+                    ->label('Residence Name (EN)')
+                    ->required(),
+
+                TextInput::make('name.ar')
+                    ->label('Residence Name (AR)')
+                    ->required(),
             ]);
     }
 }
