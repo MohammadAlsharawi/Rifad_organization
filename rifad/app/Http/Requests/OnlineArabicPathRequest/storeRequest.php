@@ -22,15 +22,19 @@ class storeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name'             => 'required|string|max:255',
+            'full_name_ar'             => 'required|string|max:255',
+            'full_name_en'             => 'required|string|max:255',
             'birth_date'            => 'nullable|date',
             'gender'                => 'nullable|in:male,female',
             'grade'                 => 'nullable|string|max:255',
-            'parent_name'           => 'nullable|string|max:255',
+            'parent_name_en'           => 'nullable|string|max:255',
+            'parent_name_ar'           => 'nullable|string|max:255',
             'phone'                 => 'nullable|string|max:255',
             'email'                 => 'nullable|email',
-            'origin_country'        => 'nullable|string|max:255',
-            'residence_country'     => 'nullable|string|max:255',
+            'origin_country_en'        => 'nullable|string|max:255',
+            'origin_country_ar'        => 'nullable|string|max:255',
+            'residence_country_en'     => 'nullable|string|max:255',
+            'residence_country_ar'     => 'nullable|string|max:255',
             'speaks_arabic_id'      => 'required|exists:speaks_arabics,id',
             'reading_level_id'      => 'required|exists:reading_levels,id',
             'home_language_id'      => 'required|exists:home_languages,id',

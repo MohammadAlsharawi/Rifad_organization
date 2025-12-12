@@ -8,10 +8,20 @@ use Exception;
 
 class AnaabService
 {
-    public function store(array $data): Anaab
+    public function store(array $data)
     {
         try {
-            return Anaab::create($data);
+            $anaab = Anaab::create([
+                'phone'        => $data['phone'],
+                'email'        => $data['email'],
+                'residence_id' => $data['residence_id'],
+            ]);
+
+            $anaab->setTranslation('name', 'en', $data['name_en']);
+            $anaab->setTranslation('name', 'ar', $data['name_ar']);
+            $anaab->save();
+
+            return $anaab;
         } catch (Exception $e) {
             throw new Exception("Failed to create Anaab: " . $e->getMessage());
         }
@@ -20,11 +30,17 @@ class AnaabService
     public function getResidences()
     {
         try {
-            return Residence::all();
+            return Residence::all()->map(function ($residence) {
+                return [
+                    'id'   => $residence->id,
+                    'name' => $residence->getTranslation('name', app()->getLocale()),
+                ];
+            });
         } catch (Exception $e) {
             throw new Exception("Failed to retrieve residences: " . $e->getMessage());
         }
     }
 
-    
+
+
 }

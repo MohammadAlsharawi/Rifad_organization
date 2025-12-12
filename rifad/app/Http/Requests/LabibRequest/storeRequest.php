@@ -22,12 +22,18 @@ class storeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name' => 'required|string|max:255',
-            'province'  => 'required|string|max:255',
+            'full_name_en'      => 'required|string|max:255',
+            'full_name_ar'      => 'required|string|max:255',
+
+            'province_en'      => 'required|string|max:255',
+            'province_ar'      => 'required|string|max:255',
+
+            'course_en'      => 'required|string|max:255',
+            'course_ar'      => 'required|string|max:255',
+
             'grade'     => 'required|string|max:255',
             'email'     => 'nullable|email',
             'phone'     => 'nullable|string|max:255',
-            'course'    => 'nullable|string|max:255',
         ];
     }
 }

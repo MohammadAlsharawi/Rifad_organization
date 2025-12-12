@@ -22,7 +22,8 @@ class storeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'           => ['required', 'string', 'max:255'],
+            'name_en'      => 'required|string|max:255',
+            'name_ar'      => 'required|string|max:255',
             'email'          => ['nullable', 'email', 'max:255'],
             'phone'          => ['nullable', 'string', 'max:255'],
             'donated_amount' => ['required', 'numeric', 'min:0'],

@@ -19,7 +19,7 @@ class ITeachForSyriaController extends Controller
     public function store(storeRequest $request)
     {
         try{
-            $response = $this->ITechForSyria->create($request->validated());
+            $response = $this->ITechForSyria->store($request->validated());
             return $this->successResponse($response, 'Form submitted successfully.');
         }catch(\Exception $e){
             return $this->errorResponse($e->getMessage());

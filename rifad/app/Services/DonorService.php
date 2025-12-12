@@ -26,13 +26,15 @@ public function createDonor(array $data): Donor
         }
 
         $donor = Donor::create([
-            'name'           => $data['name'],
             'email'          => $data['email'] ?? null,
             'phone'          => $data['phone'] ?? null,
             'donated_amount' => $data['donated_amount'],
             'project_id'     => $project->id,
             'status'         => 'pending',
         ]);
+        $donor->setTranslation('name', 'en', $data['name_en']);
+        $donor->setTranslation('name', 'ar', $data['name_ar']);
+        $donor->save();
 
         if (filter_var('mohammedalsharawi17@gmail.com', FILTER_VALIDATE_EMAIL)) {
             Mail::to('mohammedalsharawi17@gmail.com')->queue(new NewDonationMail($donor));
@@ -68,6 +70,28 @@ public function createDonor(array $data): Donor
 
     public function getProjects()
     {
-        return Project::where('status', 'in_progress')->get();
+        try {
+            return Project::where('status', 'in_progress')
+                ->get()
+                ->map(function ($project) {
+                    return [
+                        'id'             => $project->id,
+                        'image'          => $project->image,
+                        'title'          => $project->getTranslation('title', app()->getLocale()),
+                        'description'    => $project->getTranslation('description', app()->getLocale()),
+                        'reason'         => $project->getTranslation('reason', app()->getLocale()),
+                        'total_amount'   => $project->total_amount,
+                        'secured_amount' => $project->secured_amount,
+                        'organization_id'=> $project->organization_id,
+                        'status'         => __($project->status),
+                        'category'       => __($project->category),
+                        'created_at'     => $project->created_at,
+                        'updated_at'     => $project->updated_at,
+                    ];
+                });
+        } catch (\Exception $e) {
+            throw new \Exception("Failed to retrieve projects: " . $e->getMessage());
+        }
     }
+
 }

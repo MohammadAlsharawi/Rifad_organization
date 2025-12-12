@@ -22,9 +22,13 @@ class storeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      => 'required|string|max:255',
+            'name_en'     => 'required|string|max:255',
+            'name_ar'     => 'required|string|max:255',
+
+            'address_en'  => 'required|string|max:255',
+            'address_ar'  => 'required|string|max:255',
+
             'email'     => 'required|email',
-            'address'   => 'nullable|string|max:255',
             'phone'     => 'nullable|string|max:255',
             'comments'  => 'nullable|string',
             'cv'        => 'nullable|file|mimes:pdf|max:4000',

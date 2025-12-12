@@ -22,19 +22,26 @@ class storeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name'           => 'required|string|max:255',
-            'phone'        => 'required|string|max:20',
-            'email'               => 'required|email',
-            'residence'           => 'required|string|max:255',
-            'birth_year'          => 'required|integer|min:1900|max:' . date('Y'),
-            'gender'              => 'required|in:male,female',
-            'degree_id'           => 'required|exists:degrees,id',
-            'sector_id'           => 'required|exists:sectors,id',
-            'experience_year_id'  => 'required|exists:experience_years,id',
-            'training_type_id'    => 'required|exists:training_types,id',
-            'need_id'             => 'required|exists:needs,id',
-            'course_id'           => 'required|exists:course_names,id',
-            'confirmed'           => 'required|boolean',
+            'full_name'       => 'required|array',
+            'full_name.en'    => 'required|string|max:255',
+            'full_name.ar'    => 'required|string|max:255',
+
+            'residence'       => 'required|array',
+            'residence.en'    => 'required|string|max:255',
+            'residence.ar'    => 'required|string|max:255',
+
+            'gender'          => 'required|in:male,female',
+
+            'phone'           => 'required|string|max:20',
+            'email'           => 'required|email',
+            'birth_year'      => 'required|integer|min:1900|max:' . date('Y'),
+            'degree_id'       => 'required|exists:degrees,id',
+            'sector_id'       => 'required|exists:sectors,id',
+            'experience_year_id' => 'required|exists:experience_years,id',
+            'training_type_id'=> 'required|exists:training_types,id',
+            'need_id'         => 'required|exists:needs,id',
+            'course_id'       => 'required|exists:course_names,id',
+            'confirmed'       => 'boolean',
         ];
     }
 }

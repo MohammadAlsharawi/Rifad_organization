@@ -17,7 +17,6 @@ class ITeachForSyria extends Model
     public $translatable = [
         'full_name',
         'residence',
-        'gender'
     ];
 
     protected $casts = [
