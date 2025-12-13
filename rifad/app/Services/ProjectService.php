@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Project;
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectService
 {
@@ -15,7 +16,7 @@ class ProjectService
             return $projects->map(function ($project) {
                 return [
                     'id'               => $project->id,
-                    'image'            => $project->image,
+                    'image'            => Storage::disk('public')->url($project->image),
                     'title'            => $project->getTranslation('title', app()->getLocale()),
                     'description'      => $project->getTranslation('description', app()->getLocale()),
                     'reason'           => $project->getTranslation('reason', app()->getLocale()),
@@ -41,7 +42,7 @@ class ProjectService
 
             return [
                 'id'               => $project->id,
-                'image'            => $project->image,
+                'image'            => Storage::disk('public')->url($project->image),
                 'title'            => $project->getTranslation('title', app()->getLocale()),
                 'description'      => $project->getTranslation('description', app()->getLocale()),
                 'reason'           => $project->getTranslation('reason', app()->getLocale()),
@@ -69,7 +70,7 @@ class ProjectService
             return $projects->map(function ($project) {
                 return [
                     'id'               => $project->id,
-                    'image'            => $project->image,
+                    'image'            => Storage::disk('public')->url($project->image),
                     'title'            => $project->getTranslation('title', app()->getLocale()),
                     'description'      => $project->getTranslation('description', app()->getLocale()),
                     'reason'           => $project->getTranslation('reason', app()->getLocale()),
@@ -98,7 +99,7 @@ class ProjectService
             return $projects->map(function ($project) {
                 return [
                     'id'               => $project->id,
-                    'image'            => $project->image,
+                    'image'            => Storage::disk('public')->url($project->image),
                     'title'            => $project->getTranslation('title', app()->getLocale()),
                     'description'      => $project->getTranslation('description', app()->getLocale()),
                     'reason'           => $project->getTranslation('reason', app()->getLocale()),

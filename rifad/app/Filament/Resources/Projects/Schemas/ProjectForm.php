@@ -15,7 +15,14 @@ class ProjectForm
         return $schema
             ->components([
                 FileUpload::make('image')
-                    ->image(),
+                    ->required()
+                    ->image()
+                    ->disk('public')
+                    ->directory('photos')
+                    ->maxSize(5000)
+                    ->imagePreviewHeight('250')
+                    ->downloadable()
+                    ->openable(),
                 TextInput::make('title.en')
                     ->label('Title (EN)')
                     ->required(),

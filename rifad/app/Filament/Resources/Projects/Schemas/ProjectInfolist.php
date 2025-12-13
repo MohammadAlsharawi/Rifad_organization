@@ -12,7 +12,8 @@ class ProjectInfolist
     {
         return $schema
             ->components([
-                ImageEntry::make('image'),
+                ImageEntry::make('image')
+                ->disk('public'),
                 TextEntry::make('title')
                     ->label(__('Title'))
                     ->getStateUsing(fn ($record) =>

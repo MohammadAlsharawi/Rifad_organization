@@ -26,7 +26,7 @@ class ProjectsTable
         return $table
         ->searchable(false)
         ->columns([
-        ImageColumn::make('image'),
+
 
         TextColumn::make('title')
             ->label(__('Title'))
@@ -63,6 +63,8 @@ class ProjectsTable
             ->label('organization')
             ->searchable()
             ->sortable(),
+        ImageColumn::make('image')
+        ->disk('public'),
 
         TextColumn::make('created_at')
             ->dateTime()

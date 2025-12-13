@@ -18,6 +18,7 @@ class LastestUpdateForm
         FileUpload::make('photo')
             ->required()
             ->image()
+            ->disk('public')
             ->directory('photos')
             ->maxSize(5000)
             ->imagePreviewHeight('250')

@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\LastestUpdate;
 
 use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class NewsService
 {
@@ -16,7 +17,7 @@ class NewsService
                     'id'          => $update->id,
                     'title'       => $update->getTranslation('title', app()->getLocale()),
                     'description' => $update->getTranslation('description', app()->getLocale()),
-                    'photo'       => $update->photo,
+                    'photo'       => Storage::disk('public')->url($update->photo),
                     'date'        => $update->date,
                     'time'        => $update->time,
                     'created_at'  => $update->created_at,
@@ -37,7 +38,7 @@ class NewsService
                 'id'          => $update->id,
                 'title'       => $update->getTranslation('title', app()->getLocale()),
                 'description' => $update->getTranslation('description', app()->getLocale()),
-                'photo'       => $update->photo,
+                'photo'       => Storage::disk('public')->url($update->photo),
                 'date'        => $update->date,
                 'time'        => $update->time,
                 'created_at'  => $update->created_at,

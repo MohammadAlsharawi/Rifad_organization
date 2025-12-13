@@ -21,10 +21,6 @@ class LastestUpdatesTable
         return $table
                 ->searchable(false)
                 ->columns([
-                    ImageColumn::make('photo')
-                        ->square()
-                        ->circular()
-                        ->size(80),
                     TextColumn::make('title')
                         ->label(__('Title'))
                         ->getStateUsing(fn ($record) =>
@@ -37,6 +33,11 @@ class LastestUpdatesTable
                     TextColumn::make('time')
                         ->time()
                         ->sortable(),
+                    ImageColumn::make('photo')
+                    ->square()
+                    ->circular()
+                    ->size(80)
+                    ->disk('public'),
                     TextColumn::make('created_at')
                         ->dateTime()
                         ->sortable()

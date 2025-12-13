@@ -14,7 +14,8 @@ class LastestUpdateInfolist
             ->components([
                 ImageEntry::make('photo')
                 ->square()
-                ->size(300),
+                ->size(300)
+                ->disk('public'),
                 TextEntry::make('title')
                     ->label(__('Title'))
                     ->getStateUsing(fn ($record) =>
